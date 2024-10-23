@@ -103,7 +103,7 @@ with open('./roster/roster.csv') as i:
 
         with open(f'./exams/versions/{version}.tex', 'r') as i:
             f_name, f_netid, f_seat = False, False, False
-            with open(f'./exams/tex_exams/{row_number.lower()}-{section}-{seat_number}-ver_{version.lower()}-{"righty" if not lefty else "lefty"}.tex', 'w') as o:
+            with open(f'./exams/tex_exams/{section}-{row_number.lower()}-{seat_number}-ver_{version.lower()}-{"righty" if not lefty else "lefty"}.tex', 'w') as o:
                 for idx, line in enumerate(i):
                     new_line = line
                     if "STUDENT_NAME" in line:
