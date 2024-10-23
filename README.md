@@ -2,6 +2,9 @@
 
 Dependencies:
 - Python 3.10+
+    - Check installation with ``python --version`` or ``python3 --version``
+- Pdflatex (comes with Miktex among other distributions of TeX/LaTeX)
+    - Check installation with ``pdflatex --version``
 
 Directions for use:
 1. Clone repository into Python environment
