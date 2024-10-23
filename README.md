@@ -1,9 +1,12 @@
-# Exam Seat Assignment and Generation Script for ICS 6B/6D at UC Irvine
+# Exam Seat Assigner and PDF Generator for ICS 6B/6D at UC Irvine
 
-Dependencies:
+## Dependencies:
 - Python 3.10+
+    - Check installation with ``python --version`` or ``python3 --version``
+- Pdflatex (comes with Miktex among other distributions of TeX/LaTeX)
+    - Check installation with ``pdflatex --version``
 
-Directions for use:
+## Directions for Use:
 1. Clone repository into Python environment
 2. Create folders for exams
     1. ``mkdir exams``
