@@ -1,0 +1,36 @@
+{
+    "ver_a": {
+        "righty": {
+            "[Row_Letter]": [
+                
+            ]
+        },
+        "lefty": {
+            "[Row_Letter]": [
+                
+            ]
+        }
+    },
+    "ver_b": {
+        "righty": {
+            "[Row_Letter]": [
+                
+            ]
+        },
+        "lefty": {
+
+        }
+    },
+    "ver_c": {
+        "righty": {
+            "[Row_Letter]": [
+                
+            ]
+        },
+        "lefty": {
+            "[Row_Letter]": [
+                
+            ]
+        }
+    }
+}
