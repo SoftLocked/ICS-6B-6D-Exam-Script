@@ -1,6 +1,7 @@
 import json
 import csv
 import random
+import string
 
 ver_a_lefty = []
 ver_b_lefty = []
@@ -39,8 +40,7 @@ with open('./seats/hslh100a.json', 'r') as file:
         global data
         for k,v in data[f"ver_{version.lower()}"]["righty" if handedness == "R" else "lefty"].items():
             for i in range(len(v)):
-                if k != "A":
-                    data_list.append(f"{k}{v[i]}")
+                data_list.append(f"{k}{v[i]}")
 
     load_data("A", "R")
     load_data("A", "L")
@@ -51,81 +51,40 @@ with open('./seats/hslh100a.json', 'r') as file:
 
 seats = ver_a_lefty, ver_b_lefty, ver_c_lefty, ver_a_righty, ver_b_righty, ver_c_righty
 
-with open('./roster/roster.csv') as i:
-    csvreader = csv.reader(i)
-    next(csvreader)
-
-    for row in csvreader:
-        id, last_name, first_name, netid, lefty = row
-        lefty = True if lefty == "YES" else False
-
-        version = None
-        seat = None
-
-        def allocate(data_list):
-            choice = random.randint(0, len(data_list)-1)
-            seat = data_list[choice]
-            data_list.pop(choice)
-            return seat
-
-        if lefty:
-            if ver_a_lefty:
-                version, seat =  "A", allocate(ver_a_lefty,)
-            elif ver_b_lefty:
-                version, seat = "B", allocate(ver_b_lefty)
-            elif ver_c_lefty:
-                version, seat = "C", allocate(ver_c_lefty)
-            else:
-                if ver_a_righty:
-                    version, seat = "A", allocate(ver_a_righty)
-                elif ver_b_righty:
-                    version, seat = "B", allocate(ver_b_righty)
-                elif ver_c_righty:
-                    version, seat = "C", allocate(ver_c_righty)
-        else:
-            if ver_a_righty:
-                version, seat = "A", allocate(ver_a_righty)
-            elif ver_b_righty:
-                version, seat = "B", allocate(ver_b_righty)
-            elif ver_c_righty:
-                version, seat = "C", allocate(ver_c_righty)
-
-        seat_number = int(seat[1:])
-        row_number = seat[:1]
-
-        if seat_number > 100:
-            section = "middle"
-        else:
-            if seat_number % 2:
-                section = "right"
-            else:
-                section = "left"
-
+def allocate(data, version, lefty):
+    for seat_idx, seat in enumerate(data):
         with open(f'./exams/versions/{version}.tex', 'r') as i:
             f_name, f_netid, f_seat = False, False, False
-            with open(f'./exams/tex_exams/{section}-{row_number.lower()}-{seat_number}-ver_{version.lower()}-{"righty" if not lefty else "lefty"}.tex', 'w') as o:
-                for idx, line in enumerate(i):
+            with open(f'./exams/tex_exams/{"lefty" if lefty else "righty"}-{"A" if seat[:1] == "A" else "B-end"}-{''.join(random.choices(string.ascii_letters, k=5))}-ver{version}-{seat}.tex', 'w') as o:
+                for line_idx, line in enumerate(i):
                     new_line = line
                     if "STUDENT_NAME" in line:
                         if f_name:
-                            raise ValueError(f"Too many instances of STUDENT_NAME (line: {idx})")
+                            raise ValueError(f"Too many instances of STUDENT_NAME (line: {line_idx})")
                         f_name = True
 
-                        new_line = line.replace("STUDENT_NAME", f'{first_name.title()} {last_name.title()}')
+                        new_line = line.replace("STUDENT_NAME", '')
                     if "STUDENT_NETID" in line:
                         if f_netid:
-                            raise ValueError(f"Too many instances of STUDENT_NETID (line: {idx})")
+                            raise ValueError(f"Too many instances of STUDENT_NETID (line: {line_idx})")
                         f_netid = True
-                        new_line = line.replace("STUDENT_NETID", f'{netid.lower()}')
+                        new_line = line.replace("STUDENT_NETID", '')
                     if "SEAT_NUMBER" in line:
                         if f_seat:
-                            raise ValueError(f"Too many instances of SEAT_NUMBER (line: {idx})")
+                            raise ValueError(f"Too many instances of SEAT_NUMBER (line: {line_idx})")
                         f_seat = True
-                        new_line = line.replace("SEAT_NUMBER", f'{seat}')
+                        new_line = line.replace("SEAT_NUMBER", f'{r'\textit{' + seat + '}' if lefty else seat}')
                     o.write(new_line)
             if not f_name:
-                raise ValueError(f"Missing instance of STUDENT_NAME (line: {idx})")
+                raise ValueError(f"Missing instance of STUDENT_NAME")
             if not f_netid:
-                raise ValueError(f"Missing instance of STUDENT_NETID (line: {idx})")
+                raise ValueError(f"Missing instance of STUDENT_NETID")
             if not f_seat:
-                raise ValueError(f"Missing instance of SEAT_NUMBER (line: {idx})")
+                raise ValueError(f"Missing instance of SEAT_NUMBER")
+
+allocate(ver_a_lefty, "A", True)
+allocate(ver_b_lefty, "B", True)
+allocate(ver_c_lefty, "C", True)
+allocate(ver_a_righty, "A", False)
+allocate(ver_b_righty, "B", False)
+allocate(ver_c_righty, "C", False)
