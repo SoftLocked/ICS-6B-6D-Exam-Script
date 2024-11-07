@@ -45,10 +45,8 @@ def clean_accom_table():
                     line = line[-3:]
                 if not (line[0] and line[1] and line[2]):
                     continue
-                # print(line[-1][line[-1].find('@'):])
                 if line[-1][line[-1].find('@'):] != '@uci.edu':
                     continue
-                print(line)
                 writer.writerow([line[-1][:line[-1].find('@')], 1 if line[0][0].lower() == 'y' else 0, 1 if line[1][0].lower() == 'y' else 0])
 
 
@@ -67,10 +65,8 @@ def add_accoms():
             accom_reader = csv.reader(in_file, delimiter=',')
             for read_accom_line in accom_reader:
                 if read_accom_line[0].lower() == csv_list[i][3].lower():
-                    print(read_accom_line[1:])
                     csv_list[i][-2] = "Yes" if read_accom_line[1:][0] == '1' else "No"
                     csv_list[i][-1] = "Yes" if read_accom_line[1:][1] == '1' else "No"
-                    print(csv_list)
 
     with open("roster/roster.csv", 'w', newline='') as o:
         csvwriter = csv.writer(o, delimiter=',')

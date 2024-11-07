@@ -13,6 +13,14 @@ seat_number_on_exam = vars['seat_number_on_exam']
 
 print("Prepping Roster...")
 prep_roster.make_roster_file()
+print("--- Cleaning Up input Data...")
 prep_roster.clean_accom_table()
+print("--- Processing Accomodations...")
 prep_roster.add_accoms()
+print("--- Shuffling Roster for Randomized Assignment...")
 prep_roster.shuffle_roster()
+print("Roster Prepared!")
+
+print()
+
+print("Allocating Seats...")
