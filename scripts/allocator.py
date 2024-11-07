@@ -1,6 +1,7 @@
 import json
 import csv
 import random
+import sys
 
 ver_a_lefty = []
 ver_b_lefty = []
@@ -11,7 +12,7 @@ ver_a_righty = []
 ver_b_righty = []
 ver_c_righty = []
 
-with open('./seats/hslh100a.json', 'r') as file:
+with open(f'./seats/{sys.argv[1]}.json', 'r') as file:
     data = json.load(file)
 
     def load_data(version, handedness):
