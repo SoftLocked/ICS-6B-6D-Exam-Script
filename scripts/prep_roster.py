@@ -56,7 +56,7 @@ def add_accoms():
 
     with open("roster/roster.csv", 'r') as i:
         csvreader = csv.reader(i)
-        csv_list = [row + ["No", "No"] for row in csvreader][1:]
+        csv_list = [row + ["0", "0", "N/A"] for row in csvreader][1:]
 
     for i in range(len(csv_list)):
         if type(csv_list[i]) != list:
@@ -65,12 +65,12 @@ def add_accoms():
             accom_reader = csv.reader(in_file, delimiter=',')
             for read_accom_line in accom_reader:
                 if read_accom_line[0].lower() == csv_list[i][3].lower():
-                    csv_list[i][-2] = "Yes" if read_accom_line[1:][0] == '1' else "No"
-                    csv_list[i][-1] = "Yes" if read_accom_line[1:][1] == '1' else "No"
+                    csv_list[i][-2] = "1" if read_accom_line[1:][0] == '1' else "0"
+                    csv_list[i][-1] = "1" if read_accom_line[1:][1] == '1' else "0"
 
     with open("roster/roster.csv", 'w', newline='') as o:
         csvwriter = csv.writer(o, delimiter=',')
-        o.write("Student#,Last_Name,First_Name,NetID,Lefty,Questions\n")
+        o.write("Student#,Last_Name,First_Name,NetID,Lefty,Questions,Seat\n")
         for i in csv_list:
             csvwriter.writerow(i)
 
@@ -85,6 +85,6 @@ def shuffle_roster():
 
     with open("roster/roster.csv", 'w', newline='') as o:
         csvwriter = csv.writer(o, delimiter=',')
-        o.write("Student#,Last_Name,First_Name,NetID,Lefty,Questions\n")
+        o.write("Student#,Last_Name,First_Name,NetID,Lefty,Questions,Seat\n")
         for i in csv_list:
             csvwriter.writerow(i)
