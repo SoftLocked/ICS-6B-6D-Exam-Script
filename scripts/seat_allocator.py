@@ -1,5 +1,5 @@
 import csv
-from dataclasses import Student, Seat
+from helpers import Student, Seat
 
 
 class Allocator:
@@ -52,7 +52,7 @@ class Allocator:
             if student.seat != "N/A":
                 continue
             
-            print(f"--- Student {student_idx+1:>3} of {len(students)} | {100*(student_idx+1)/len(students):.2f}%", end='\r')
+            print(f"--- Student {student_idx+1:<3} of {len(students):<3} | {100*(student_idx+1)/len(students):.2f}%", end='\r')
 
             # First pass...
             #   Skips First Row

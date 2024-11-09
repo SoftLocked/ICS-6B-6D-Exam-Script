@@ -1,8 +1,7 @@
 from pathlib import Path
 import csv
+from helpers import get_versions
 
-def get_versions():
-    return list(Path('./exam_drop').glob('*.tex'))
 
 def prep_versions(lecture_hall):
     csv_lines = []
@@ -18,7 +17,7 @@ def prep_versions(lecture_hall):
     csv_lines[1:].append('Version')
 
     for i in range(1, len(csv_lines)):
-        print(f"--- Seat {i:>3} of {len(csv_lines)-1} | {100*(i)/(len(csv_lines)-1):.2f}%", end='\r')
+        print(f"--- Seat {i:<3} of {len(csv_lines)-1:<3} | {100*(i)/(len(csv_lines)-1):.2f}%", end='\r')
         ver = i%len(versions)
         csv_lines[i].append(versions[ver].stem)
 

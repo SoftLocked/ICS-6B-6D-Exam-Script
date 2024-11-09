@@ -1,4 +1,6 @@
 
+from pathlib import Path
+
 class Student:
     '''
     Student Data Class
@@ -22,6 +24,9 @@ class Student:
             '1' if self.questions else '0',
             self.seat
         ]
+    
+    def __repr__(self):
+        return ','.join(self.make_list())
 
 
 class Seat:
@@ -46,3 +51,9 @@ class Seat:
             '1' if self.aisle else '0',
             '1' if self.front else '0'
         ]
+    
+    def __repr__(self):
+        return ','.join(self.make_list())
+
+def get_versions():
+    return list(Path('./exam_drop').glob('*.tex'))
