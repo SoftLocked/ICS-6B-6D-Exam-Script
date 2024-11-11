@@ -30,7 +30,13 @@ def generate_tex(random_dir, name, netid, numid, seat):
         print(f"--- Student {i+1:<3} of {len(students):<3} | {100*(i+1)/len(students):.2f}%", end='\r')
 
         version = versions[i%len(versions)].stem
-        file_name = f'{student.netid}'
+
+        seat = get_seats(lambda x: x.seat_string == student.seat)[0]
+
+        random_str = ''.join(random.choices(string.ascii_lowercase + string.ascii_uppercase + string.digits, k=5))
+
+        file_name = f'{'lefty' if seat.lefty else 'righty'}-{'front' if seat.front else 'notfront'}-{random_str}-{seat.seat_string}'
+
         with open(f'exam_drop/{version}.tex', encoding='utf-8') as in_file:
             with open(f'output/{random_dir}/{file_name}.tex', 'w', encoding='utf-8') as out_file:
                 for line in in_file:

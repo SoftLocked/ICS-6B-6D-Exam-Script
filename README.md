@@ -30,8 +30,6 @@ Name Variable
 NetID Variable
 ``\newcommand{\NetIDVar}{STUDENT_NETID}``
 NumberID Variable
-``\newcommand{\NetIDVar}{STUDENT_NUMID}``
+``\newcommand{\NumIDVar}{STUDENT_NUMID}``
 Seat Variable
 ``\newcommand{\SeatVar}{SEAT_NUMBER}``
-Version Variable
-``\newcommand{\VerVar}{VER_NUMBER}``
