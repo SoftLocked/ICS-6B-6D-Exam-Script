@@ -1,4 +1,4 @@
 # Ignore Everything Except This File
 *
-accom.csv
+!accom.csv
 !.gitignore
