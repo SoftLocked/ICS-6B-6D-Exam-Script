@@ -33,9 +33,9 @@ def generate_tex(random_dir, name, netid, numid, seat):
 
         seat = get_seats(lambda x: x.seat_string == student.seat)[0]
 
-        random_str = ''.join(random.choices(string.ascii_lowercase + string.ascii_uppercase + string.digits, k=5))
+        random_str = ''.join(random.choices(string.ascii_lowercase + string.digits, k=5))
 
-        file_name = f'{'lefty' if seat.lefty else 'righty'}-{'front' if seat.front else 'notfront'}-{random_str}-{seat.seat_string}'
+        file_name = f"{'lefty' if seat.lefty else 'righty'}-{'front' if seat.front else 'notfront'}-{random_str}-{seat.seat_string}"
 
         with open(f'exam_drop/{version}.tex', encoding='utf-8') as in_file:
             with open(f'output/{random_dir}/{file_name}.tex', 'w', encoding='utf-8') as out_file:
@@ -44,25 +44,29 @@ def generate_tex(random_dir, name, netid, numid, seat):
                         if name:
                             line = line.replace('STUDENT_NAME', f'{student.first_name} {student.last_name}')
                         else:
-                            line = line.replace('STUDENT_NAME', '')
+                            pass
+                            # line = line.replace('STUDENT_NAME', '')
 
                     if 'STUDENT_NETID' in line:
                         if netid:
                             line = line.replace('STUDENT_NETID', f'{student.netid}')
                         else:
-                            line = line.replace('STUDENT_NETID', '')
+                            pass
+                            # line = line.replace('STUDENT_NETID', '')
                     
                     if 'STUDENT_NUMID' in line:
                         if numid:
                             line = line.replace('STUDENT_NUMID', f'{student.num_id}')
                         else:
-                            line = line.replace('STUDENT_NUMID', '')
+                            pass
+                            # line = line.replace('STUDENT_NUMID', '')
                     
                     if 'SEAT_NUMBER' in line:
                         if seat:
                             line = line.replace('SEAT_NUMBER', f'{student.seat}')
                         else:
-                            line = line.replace('SEAT_NUMBER', '')
+                            pass
+                            # line = line.replace('SEAT_NUMBER', '')
 
                     out_file.write(line)
 

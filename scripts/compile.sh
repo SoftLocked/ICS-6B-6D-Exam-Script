@@ -6,7 +6,7 @@ index=1
 
 for i in *.tex;
 do
-    pdflatex -interaction=nonstopmode -quiet $i;
+    pdflatex --interaction=nonstopmode $i;
     rm *.aux
     rm *.log
     percent=$(($index+1))/$file_count
@@ -20,3 +20,4 @@ echo ""
 echo "Compilation Complete!"
 
 cd ../../
+
