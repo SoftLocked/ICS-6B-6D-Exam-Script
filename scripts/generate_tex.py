@@ -40,30 +40,30 @@ def generate_tex(random_dir, name, netid, numid, seat):
         with open(f'exam_drop/{version}.tex', encoding='utf-8') as in_file:
             with open(f'output/{random_dir}/{file_name}.tex', 'w', encoding='utf-8') as out_file:
                 for line in in_file:
-                    if 'STUDENT_NAME' in line:
+                    if 'STUDENTNAME' in line:
                         if name:
-                            line = line.replace('STUDENT_NAME', f'{student.first_name} {student.last_name}')
+                            line = line.replace('STUDENTNAME', f'{student.first_name} {student.last_name}')
                         else:
                             pass
                             # line = line.replace('STUDENT_NAME', '')
 
-                    if 'STUDENT_NETID' in line:
+                    if 'STUDENTNETID' in line:
                         if netid:
-                            line = line.replace('STUDENT_NETID', f'{student.netid}')
+                            line = line.replace('STUDENTNETID', f'{student.netid}')
                         else:
                             pass
                             # line = line.replace('STUDENT_NETID', '')
                     
-                    if 'STUDENT_NUMID' in line:
+                    if 'STUDENTNUMBERID' in line:
                         if numid:
-                            line = line.replace('STUDENT_NUMID', f'{student.num_id}')
+                            line = line.replace('STUDENTNUMBERID', f'{student.num_id}')
                         else:
                             pass
                             # line = line.replace('STUDENT_NUMID', '')
                     
-                    if 'SEAT_NUMBER' in line:
+                    if 'SEATNUMBER' in line:
                         if seat:
-                            line = line.replace('SEAT_NUMBER', f'{student.seat}')
+                            line = line.replace('SEATNUMBER', f'{student.seat}')
                         else:
                             pass
                             # line = line.replace('SEAT_NUMBER', '')
@@ -83,16 +83,16 @@ def generate_reserves(directory, reserves_per_version):
             with open(f'exam_drop/{version}.tex', encoding='utf-8') as in_file:
                 with open(f'output/{directory}/Z_Reserve_{j}_ver{version}.tex', 'w', encoding='utf-8') as out_file:
                     for line in in_file:
-                        if 'STUDENT_NAME' in line:
-                            line = line.replace('STUDENT_NAME', '')
+                        if 'STUDENTNAME' in line:
+                            line = line.replace('STUDENTNAME', '')
 
-                        if 'STUDENT_NETID' in line:
-                            line = line.replace('STUDENT_NETID', '')
+                        if 'STUDENTNETID' in line:
+                            line = line.replace('STUDENTNETID', '')
                         
-                        if 'STUDENT_NUMID' in line:
-                            line = line.replace('STUDENT_NUMID', '')
+                        if 'STUDENTNUMBERID' in line:
+                            line = line.replace('STUDENTNUMBERID', '')
                         
-                        if 'SEAT_NUMBER' in line:
-                            line = line.replace('SEAT_NUMBER', '')
+                        if 'SEATNUMBER' in line:
+                            line = line.replace('SEATNUMBER', '')
 
                         out_file.write(line)
