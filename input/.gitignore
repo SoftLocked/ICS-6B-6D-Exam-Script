@@ -1,4 +1,5 @@
 # Ignore Everything Except This File
 *
 !accom.csv
+!roster.csv
 !.gitignore
