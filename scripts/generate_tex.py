@@ -35,7 +35,9 @@ def generate_tex(random_dir, name, netid, numid, seat):
 
         random_str = ''.join(random.choices(string.ascii_lowercase + string.digits, k=5))
 
-        file_name = f"{'lefty' if seat.lefty else 'righty'}-{'front' if seat.front else 'notfront'}-{random_str}-{seat.seat_string}"
+        seat_char = chr(int(seat.seat_number)-1 + 65) if int(seat.seat_number) < 100 else chr(int(seat.seat_number)-101 + 65)
+
+        file_name = f"{seat.section}-{seat.seat_letter}-{seat_char}-{seat.lefty}-{seat.aisle}-{seat.front}"
 
         with open(f'exam_drop/{version}.tex', encoding='utf-8') as in_file:
             with open(f'output/{random_dir}/{file_name}.tex', 'w', encoding='utf-8') as out_file:

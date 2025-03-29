@@ -65,10 +65,13 @@ class Allocator:
 
                 if seat.front: # If the seat is front row, skip it for now
                     continue
-
+                
+                
                 if student.lefty: # If lefty, find a lefty seat
+                    
                     if not seat.lefty:
                         continue
+                    print(student)
                     student.seat = seat.seat_string
                     self._assign_seat(student.netid, seat.seat_string)
                     break
